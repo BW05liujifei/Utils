@@ -21,7 +21,7 @@ public class DateUtil {
 	}
 	
 	/**
-	 * 3.4.4�ж��Ƿ�Ϊ����
+	 * 3.4.4判断是否为当天
 	 * @param date
 	 * @return
 	 */
@@ -36,7 +36,7 @@ public class DateUtil {
 	
 	
 	/**
-	 * 3.4.4�ж��Ƿ�Ϊ����
+	 * 3.4.4判断是否为当月
 	 * @param date
 	 * @return
 	 */
@@ -50,7 +50,7 @@ public class DateUtil {
 	}
 	
 	/**
-	 * 3.4.7����ʱ����󣬳�ʼ�������³���1��0ʱ0��0��0����
+	 * 3.4.7给定时间对象，初始化到该月初的1日0时0分0秒0毫秒
 	 * @return
 	 * @throws ParseException 
 	 */
@@ -64,7 +64,7 @@ public class DateUtil {
 	
 	
 	/**
-	 * 3.4.7����ʱ����󣬳�ʼ��������ĩ�����һ��  ���� 2019/11/30 23:59:59 
+	 * 3.4.7给定时间对象，初始化到该月末的最后一秒  比如 2019/11/30 23:59:59 
 	 * @return
 	 * @throws ParseException 
 	 */
@@ -102,12 +102,12 @@ public class DateUtil {
 		Calendar instance = Calendar.getInstance();
 		instance.setTime(birthday);
 		
-		//�õ���������
+		//得到出生的年
 		int birthYear = instance.get(Calendar.YEAR);
 		int birthMonth = instance.get(Calendar.MONTH);
 		int birthDate = instance.get(Calendar.DAY_OF_MONTH);
 		
-		//��ȡ��ǰ��������
+		//获取当前的年月日
 		instance.setTime(new Date());
 		int currentYear = instance.get(Calendar.YEAR);
 		int currentMonth = instance.get(Calendar.MONTH);

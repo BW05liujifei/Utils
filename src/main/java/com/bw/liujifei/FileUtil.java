@@ -15,43 +15,43 @@ public class FileUtil {
 	public static Logger log = Logger.getLogger(FileUtil.class); 
 	
 	/**
-	 * �����Ŀ¼����������ļ���������Ŀ¼�е��ļ���Ҫɾ��
-	     ʹ�õݹ顣�漰���ݡ��ж�Ŀ¼�Ĵ����ԣ��ж��Ƿ�ΪĿ¼���ļ���ɾ����
+	 * 如果是目录，则下面的文件和所有子目录中的文件都要删除
+	     使用递归。涉及内容。判断目录的存在性，判断是否为目录或文件，删除。
 
 	 * @param fileName
 	 */
 	public static void delFilePath(String fileName) {
 		
 		File file = new File(fileName);
-		// �ļ�������  ��ֱ�ӷ���
+		// 文件不存在  则直接返回
 		if(!file.exists()) {
 			return;
 		}
 		
-		// ������ļ�  ��ɾ���󷵻�
+		// 如果是文件  则删除后返回
 		if(file.isFile()) {
-			log.info(" ɾ���ļ� " + fileName);
+			log.info(" 删除文件 " + fileName);
 			file.delete();
 			return;
 		}
 		
-		//�����Ŀ¼
+		//如果是目录
 		if(file.isDirectory()) {
-			// ���г�Ŀ¼�����е���Ŀ¼���ļ�
+			// 则列出目录下所有的子目录和文件
 			 String[] list = file.list();
-			 //���ÿһ��
+			 //针对每一项
 			 for (String subPath : list) {
-				 //����ɾ������
+				 //调用删除功能
 				 delFilePath(fileName + "/" + subPath);
 			}
-			 log.info(" ------------ ɾ���ļ� �� �� " + fileName); 
+			 log.info(" ------------ 删除文件 夹 ： " + fileName); 
 			file.delete(); 
 		}
 		
 		
 	}
 	
-	//3.5.2��ȡ�ļ���չ��
+	//3.5.2获取文件扩展名
 	/**
 	 * 
 	 * @param fileName
@@ -59,11 +59,11 @@ public class FileUtil {
 	 */
 	public static String getSuffix(String fileName) {
 		int dotIndex = fileName.lastIndexOf('.');
-		//û����չ��
+		//没有扩展名
 		if(dotIndex<0) {
 			return "";
 		}
-		//���һλ�� .
+		//最后一位是 .
 		if(dotIndex>=fileName.length()) {
 			return "";
 		}
@@ -84,7 +84,7 @@ public class FileUtil {
 	}
 	
 	/**
-	 * �����ļ���ָ����λ��С��ʾ
+	 * 返回文件以指定单位大小表示
 	 */
 	public long  getSize(String fileName,FileUnit fileUnit) {
 		File file = new File(fileName);

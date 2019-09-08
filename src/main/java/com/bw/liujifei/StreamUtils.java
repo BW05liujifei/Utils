@@ -13,7 +13,7 @@ import java.io.OutputStream;
 public class StreamUtils {
 	
 	/**
-	 * �ر���
+	 * 关闭流
 	 * @param closeables
 	 * @throws IOException 
 	 */
@@ -36,7 +36,7 @@ public class StreamUtils {
 		while(is.read(b)>0) {
 			os.write(b);
 		}
-		//ˢ��
+		//刷新
 		os.flush();
 		
 	}
