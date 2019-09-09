@@ -12,20 +12,6 @@ import java.util.regex.Pattern;
  */
 public class StringUtils {
 	
-	/**
-	 * 
-	 * @param src
-	 * @return
-	 */
-	public static String toHtml(String src) {
-		
-		String[] strings = src.split("\\\n");
-		StringBuilder sb = new StringBuilder();
-		for (String string : strings) {
-			sb.append("<p>").append(string).append("</p>");
-		}
-		return sb.toString();
-	}
 	
 	/**
 	 *  
@@ -44,7 +30,7 @@ public class StringUtils {
 	 * @param str
 	 * @return
 	 */
-	public static boolean isHasValue(String str) {
+	public static boolean hasText1(String str) {
 		
 		// 以下两种写法都对
 		//return !(null ==str || "".equals(str.trim()));
@@ -55,7 +41,7 @@ public class StringUtils {
 	 * @param str
 	 * @return
 	 */
-	public static boolean isTelephone(String str) {
+	public static boolean isPhone(String str) {
 		String pattern = "^(136|135|137)\\d{8}$";
 		return str.matches(pattern);
 	}
@@ -212,4 +198,16 @@ public class StringUtils {
 		String string = src.replaceAll("\\s", "");
 		return (!"".equals(string));
 	}
+	/*方法功能：将字符串转换成html文本，如果遇到“\n”换行换符，则要将这一段文本使用<p></p>标签
+	* 包起来。如果遇到“\n\r”两个在一起按上面\n处理。如果只遇到一个“\r”则替换成<br/>标签。
+	* 使用场景：网页文本框传到后台的字符串就可能就会回车换行。*/
+	public static String toHtml1(String src){
+		String[] strings = src.split("\\\n");
+		StringBuilder sb = new StringBuilder();
+		for (String string : strings) {
+			sb.append("<p>").append(string).append("</p>");
+		}
+		return sb.toString();
+	}
+	
 }
